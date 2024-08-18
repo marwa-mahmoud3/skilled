@@ -1,0 +1,113 @@
+<div class="sign-up">
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <div class="col-md-6 col-sm-12 sign-up-image">
+                <div class="d-flex align-items-center justify-content-center h-100">
+                    <img class="img-fluid" src="../../assets/images/signup-img.png" alt="sign-up-image">
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 sign-up-form d-flex justify-content-center align-items-center h-100">
+                <div class="sign-up-form-content">
+                    <a routerLink="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="106" height="28" viewBox="0 0 106 28" fill="none">
+                            <path d="M10.4353 27.2206C5.5683 27.2206 2.10225 25.3355 0 23.3753L3.07016 20.1338C5.1708 21.8672 7.47018 22.8856 10.3901 22.8856C14.168 22.8856 15.2183 21.1507 15.2183 19.4924C15.2183 13.1957 0.0710988 16.9659 0.0710988 7.57952C0.0710988 3.16947 3.38202 0.00156115 9.53365 0.00156115C13.7349 0.00156115 17.2042 1.50964 19.6571 3.54649L16.8148 6.97722C14.3732 5.04832 11.993 4.33808 9.5789 4.33808C6.30837 4.33808 4.94457 5.61932 4.94457 7.2025C4.94457 12.5215 20.0918 9.01251 20.0918 19.153C20.0918 23.7147 17.0555 27.2206 10.4353 27.2206ZM21.6204 0H26.3904V19.7928L36.0146 7.35894H41.6992L33.7039 17.5995L40.8978 27.2206H35.2535L30.881 21.3322L26.3904 27.2206H21.6204V0ZM77.7478 20.9098H82.9541C81.642 24.7957 78.1065 27.2206 73.2944 27.2206C67.1347 27.2206 62.9997 23.2188 62.9997 17.2538C62.9997 11.3278 67.1347 7.36363 73.2944 7.36363C79.4541 7.36363 83.5504 11.3278 83.5504 17.2538C83.5504 17.7919 83.51 18.2925 83.4712 18.7931H67.9297C68.4452 21.4526 70.4327 22.9873 73.2621 22.9873C75.2432 22.9873 76.7928 22.2567 77.7478 20.9098ZM78.2632 14.5599C77.4294 12.6748 75.6407 11.5969 73.254 11.5969C70.9078 11.5969 69.1206 12.6748 68.2852 14.5599H78.2632ZM49.8238 7.36363H54.888V27.2206H49.8174L49.8238 7.36363ZM56.415 0.00156115H61.4775V27.2221H56.4085L56.415 0.00156115ZM43.2327 13.5133H48.2904V27.2206H43.2262L43.2327 13.5133ZM43.1907 9.85259C43.1966 10.5113 43.4695 11.1415 43.9507 11.6073C44.4318 12.0732 45.0827 12.3374 45.7632 12.3431C46.434 12.3268 47.0718 12.0574 47.5404 11.5922C48.0089 11.1271 48.2712 10.5031 48.2712 9.85337C48.2712 9.20365 48.0089 8.57966 47.5404 8.11452C47.0718 7.64937 46.434 7.37991 45.7632 7.36363C45.0819 7.36771 44.4296 7.631 43.9471 8.09667C43.4646 8.56234 43.1906 9.19303 43.1842 9.85259H43.1907ZM101.092 0.00938602V9.82913C100.279 9.03696 99.3123 8.40891 98.2469 7.98138C97.1815 7.55386 96.039 7.33538 94.8857 7.3386C89.416 7.3386 85.0887 11.489 85.0887 17.2991C85.0887 23.0702 89.416 27.2206 94.8857 27.2206C96.0489 27.2257 97.2014 27.0045 98.2745 26.5699C99.3477 26.1354 100.32 25.4964 101.133 24.6909L101.501 27.2206H105.993V0.00938602H101.092ZM95.036 22.9544C91.7121 22.9544 89.5081 20.8222 89.5081 17.2147C89.5081 13.6072 91.7121 11.4749 95.036 11.4749C98.4019 11.4749 100.604 13.6087 100.604 17.2147C100.604 20.8206 98.3986 22.9544 95.036 22.9544Z" fill="#0070FF"/>
+                        </svg>
+                    </a>
+                    <h1>Sign up</h1>
+                    <span>Welcome to AISkilled Please enter your details.</span>
+                    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                        <div class="input-box">
+                            <label for="nameInput" class="form-label">Name*</label>
+                            <input type="text" class="form-control" id="nameInput" placeholder="Enter your name" formControlName="name" 
+                            [ngClass]="{'is-invalid':signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched}"/>
+                            <div class="text-danger" *ngIf="signUpForm.get('name')?.invalid && signUpForm.get('name')?.touched">
+                                <small *ngIf="signUpForm.get('name')?.errors?.['required']">Name is required</small>
+                                <small *ngIf="signUpForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters</small>
+                                <small *ngIf="signUpForm.get('name')?.errors?.['lettersOnly']">Only letters</small>
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <label for="emailInput" class="form-label">Business Email*</label>
+                            <input type="email" class="form-control" id="emailInput" placeholder="Enter your business email" formControlName="businessemail"
+                            [ngClass]="{'is-invalid':signUpForm.get('businessemail')?.invalid && signUpForm.get('businessemail')?.touched}" />
+                            <div class="text-danger" *ngIf="signUpForm.get('businessemail')?.invalid && signUpForm.get('businessemail')?.touched">
+                                <small *ngIf="signUpForm.get('businessemail')?.errors?.['required']">Business Email is required.</small>
+                                <small *ngIf="signUpForm.get('businessemail')?.errors?.['email']">This is an error message.</small>
+                            </div>
+                        </div>
+                        <div class="input-box countries">
+                            <label for="phonenumberInput" class="form-label">Phone number</label>
+                            <div class="input-group" [ngClass]="{'input-focus':phoneNumberFocus}">
+                                <div class="input-group-text p-0 border-0" id="basic-addon">
+                                    <div class="dropdown">
+                                        <div class="toggle" data-bs-toggle="dropdown">
+                                            {{selectedCoutry}} 
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                <path d="M5 7.5L10 12.5L15 7.5" stroke="#98A2B3" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </div>
+                                        <ul class="dropdown-menu w-100">
+                                            <li *ngFor="let item of countryCodes" (click)="selectCountry(item)">
+                                                {{item}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <input type="text" (focus)="onFocusPhoneNumber()"  (blur)="onFocusPhoneNumber()"  class="form-control" id="phonenumberInput" formControlName="phonenumber"  placeholder="xxxxxxxxxx" aria-label="phonenumber" aria-describedby="basic-addon">
+                            </div>
+                        </div>
+                        <div class="input-box companysize">
+                            <label for="companySizeInput" class="form-label">Company Size*</label>
+                            <div class="dropdown"[ngClass]="{'input-focus':companySizeFocus}">
+                                <button [ngClass]="{'is-invalid':signUpForm.get('companysize')?.invalid && signUpForm.get('companysize')?.touched}"  class="toggle d-flex align-items-center justify-content-between w-100" data-bs-toggle="dropdown" (focus)="onFocusCompanySize()" (blur)="onFocusCompanySize()" (click)="onCompantSizeClick()">
+                                    <span class="m-0 input-val" *ngIf="signUpForm.get('companysize')?.value">{{signUpForm.get('companysize')?.value}} </span>
+                                    <span  *ngIf="!signUpForm.get('companysize')?.value" class="placeholder">Select company size</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M5 7.5L10 12.5L15 7.5" stroke="#98A2B3" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                                <ul class="dropdown-menu w-100">
+                                    <li *ngFor="let item of companySizes" (click)="selectCompanySize(item)">
+                                        {{item}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="text-danger" *ngIf="signUpForm.get('companysize')?.invalid && signUpForm.get('companysize')?.touched">
+                                <small *ngIf="signUpForm.get('companysize')?.errors?.['required']">Select company size</small>
+                            </div>
+                        </div>
+                        <div class="input-box password">
+                            <label for="passwordInput" class="form-label">Password*</label>
+                            <div class="input-group">
+                                <input [type]="passwordType ? 'text' : 'password'" class="form-control" id="passwordInput" placeholder="Create a password" aria-label="password" aria-describedby="basic-addon2">
+                                <span class="input-group-text m-0 d-flex align-items-center justify-content-center" id="basic-addon2" (click)="togglePasswordType()">
+                                    <i class="bi bi-eye-slash" *ngIf="passwordType"></i>
+                                    <i class="bi bi-eye" *ngIf="!passwordType"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-check">
+                                <input class="form-check-input shadow-none" type="checkbox" disabled value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Must be at least 8 characters and numbers
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input shadow-none" type="checkbox" disabled value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Must contain one capital character
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" [disabled]="signUpForm.invalid">Get started</button>
+                        <span>
+                            Already have an account? <a routerLink="">Log in</a>
+                        </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
