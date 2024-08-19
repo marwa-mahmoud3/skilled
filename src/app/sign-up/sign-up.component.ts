@@ -12,6 +12,7 @@ export class SignUpComponent {
   selectedCoutry:any = "+966"
   phoneNumberFocus : boolean = false
   companySizeFocus : boolean = false
+  passwordFocus : boolean = false
   passwordType: boolean = false
   constructor(private fb: FormBuilder) {
     this.signUpForm = this.fb.group({
@@ -19,7 +20,7 @@ export class SignUpComponent {
       businessemail: ['', [Validators.required, Validators.email]],
       phonenumber:[''],
       companysize:['',Validators.required],
-      password:['',Validators.required],
+      password:['',[Validators.minLength(8),Validators.pattern('^(?=.*[A-Z]).+$')]],
     });
   }
 
@@ -56,10 +57,16 @@ export class SignUpComponent {
     })
   }
   onFocusCompanySize(){
-    this.companySizeFocus = !this.companySizeFocus
+    this.companySizeFocus = true
+  }
+  onBlurCompanySize(){
+    this.companySizeFocus = false
   }
   onCompantSizeClick(): void {
     this.signUpForm.get('companysize')?.markAsTouched();
+  }
+  onFocusPassword(){
+    this.passwordFocus = !this.passwordFocus
   }
 
   togglePasswordType(){

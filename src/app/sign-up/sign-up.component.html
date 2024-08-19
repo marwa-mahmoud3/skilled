@@ -1,12 +1,12 @@
 <div class="sign-up">
     <div class="container-fluid h-100">
         <div class="row h-100">
-            <div class="col-md-6 col-sm-12 sign-up-image">
+            <div class="col-lg-6 col-md-12 sign-up-image">
                 <div class="d-flex align-items-center justify-content-center h-100">
                     <img class="img-fluid" src="../../assets/images/signup-img.png" alt="sign-up-image">
                 </div>
             </div>
-            <div class="col-md-6 col-sm-12 sign-up-form d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-6 col-md-12 sign-up-form d-flex justify-content-center align-items-center h-100">
                 <div class="sign-up-form-content">
                     <a routerLink="">
                         <svg xmlns="http://www.w3.org/2000/svg" width="106" height="28" viewBox="0 0 106 28" fill="none">
@@ -59,7 +59,7 @@
                         <div class="input-box companysize">
                             <label for="companySizeInput" class="form-label">Company Size*</label>
                             <div class="dropdown"[ngClass]="{'input-focus':companySizeFocus}">
-                                <button [ngClass]="{'is-invalid':signUpForm.get('companysize')?.invalid && signUpForm.get('companysize')?.touched}"  class="toggle d-flex align-items-center justify-content-between w-100" data-bs-toggle="dropdown" (focus)="onFocusCompanySize()" (blur)="onFocusCompanySize()" (click)="onCompantSizeClick()">
+                                <button [ngClass]="{'is-invalid':signUpForm.get('companysize')?.invalid && signUpForm.get('companysize')?.touched && !companySizeFocus}"  class="toggle d-flex align-items-center justify-content-between w-100" data-bs-toggle="dropdown" (focus)="onFocusCompanySize()" (blur)="onBlurCompanySize()" (click)="onCompantSizeClick()">
                                     <span class="m-0 input-val" *ngIf="signUpForm.get('companysize')?.value">{{signUpForm.get('companysize')?.value}} </span>
                                     <span  *ngIf="!signUpForm.get('companysize')?.value" class="placeholder">Select company size</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -78,27 +78,27 @@
                         </div>
                         <div class="input-box password">
                             <label for="passwordInput" class="form-label">Password*</label>
-                            <div class="input-group">
-                                <input [type]="passwordType ? 'text' : 'password'" class="form-control" id="passwordInput" placeholder="Create a password" aria-label="password" aria-describedby="basic-addon2">
-                                <span class="input-group-text m-0 d-flex align-items-center justify-content-center" id="basic-addon2" (click)="togglePasswordType()">
+                            <div class="input-group" [ngClass]="{'input-focus':passwordFocus,'is-invalid':signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched}">
+                                <input [type]="passwordType ? 'text' : 'password'" class="form-control" id="passwordInput" (focus)="onFocusPassword()"  (blur)="onFocusPassword()"
+                                formControlName="password"
+                                placeholder="Create a password" aria-label="password" aria-describedby="basic-addon2">
+                                <div class="input-group-text m-0 d-flex align-items-center justify-content-center" id="basic-addon2" (click)="togglePasswordType()">
                                     <i class="bi bi-eye-slash" *ngIf="passwordType"></i>
                                     <i class="bi bi-eye" *ngIf="!passwordType"></i>
-                                </span>
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <div class="form-check">
-                                <input class="form-check-input shadow-none" type="checkbox" disabled value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Must be at least 8 characters and numbers
-                                </label>
+                        
+                        <div class="d-flex align-items-center mb-12 check-box">
+                            <div class="icon" [ngClass]="{'success': signUpForm.get('password')?.value.length >= 8 && signUpForm.get('password')?.touched && !signUpForm.get('password')?.errors?.['minlength'],'error': signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched && signUpForm.get('password')?.errors?.['minlength']}">
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input shadow-none" type="checkbox" disabled value="" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Must contain one capital character
-                                </label>
+                            <span class="mb-0" [ngClass]="{'text-danger': signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched && signUpForm.get('password')?.errors?.['minlength']}">Must be at least 8 characters and numbers</span>
+                        </div>
+
+                        <div class="d-flex align-items-center check-box">
+                            <div class="icon" [ngClass]="{'success': signUpForm.get('password')?.touched && !signUpForm.get('password')?.errors?.['pattern'],'error':signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched && signUpForm.get('password')?.errors?.['pattern']}">
                             </div>
+                            <span class="mb-0" [ngClass]="{'text-danger': signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched && signUpForm.get('password')?.errors?.['pattern']}">Must contain one capital character</span>
                         </div>
 
                         <button type="submit" [disabled]="signUpForm.invalid">Get started</button>
