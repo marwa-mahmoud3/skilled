@@ -96,7 +96,7 @@
                         </div>
 
                         <div class="d-flex align-items-center check-box">
-                            <div class="icon" [ngClass]="{'success': signUpForm.get('password')?.touched && !signUpForm.get('password')?.errors?.['pattern'],'error':signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched && signUpForm.get('password')?.errors?.['pattern']}">
+                            <div class="icon" [ngClass]="{'success':signUpForm.get('password')?.value.length > 0 && signUpForm.get('password')?.touched && !signUpForm.get('password')?.errors?.['pattern'],'error':signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched && signUpForm.get('password')?.errors?.['pattern']}">
                             </div>
                             <span class="mb-0" [ngClass]="{'text-danger': signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched && signUpForm.get('password')?.errors?.['pattern']}">Must contain one capital character</span>
                         </div>

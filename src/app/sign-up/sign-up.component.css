@@ -47,7 +47,7 @@
 .sign-up .sign-up-form .sign-up-form-content form .is-invalid,
 .sign-up .sign-up-form .sign-up-form-content form .input-group.is-invalid input,
 .sign-up .sign-up-form .sign-up-form-content form .input-group.is-invalid .input-group-text{
-    border-color: var(--error);
+    border-color: var(--error) !important;
 }
 .sign-up .sign-up-form .sign-up-form-content form .text-danger{
     color: var(--error);
