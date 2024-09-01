@@ -6,7 +6,7 @@
     background-color: var(--brand-blue);
 }
 .sign-up .sign-up-form .sign-up-form-content{
-    width: 52%;
+    width: 75%;
     padding: 70px 16px;
 }
 .sign-up .sign-up-form .sign-up-form-content h1{
@@ -44,6 +44,9 @@
     border: 1px solid var(--border-primary);
     padding: 10px 14px;
 }
+.w-45{
+    width: 48%;
+}
 .sign-up .sign-up-form .sign-up-form-content form .is-invalid,
 .sign-up .sign-up-form .sign-up-form-content form .input-group.is-invalid input,
 .sign-up .sign-up-form .sign-up-form-content form .input-group.is-invalid .input-group-text{
@@ -68,7 +71,8 @@
     margin: 0px;
 }
 .sign-up .sign-up-form .sign-up-form-content form button[type='submit']{
-    color: var(--brand-blue);
+    background-color: var(--brand-blue);
+    color: #fff;
     width: 100%;
     padding: 10px 16px;
     border: 1px solid var(--brand-blue);
@@ -82,7 +86,7 @@
     margin-top: 24px;
 }
 .sign-up .sign-up-form .sign-up-form-content form button[type='submit']:disabled{
-    background-color: #fff;
+    /* background-color: #fff; */
     cursor: not-allowed;
 }
 .sign-up .sign-up-form .sign-up-form-content form button + span{
